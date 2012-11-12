@@ -1,0 +1,1 @@
+java -Xms512M -jar W:\ws-taa-play\sbt\sbt-launch.jar
