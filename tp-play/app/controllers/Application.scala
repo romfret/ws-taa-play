@@ -29,7 +29,7 @@ object Application extends Controller with Authentication {
    * Check if data from the form submission can authenticate the user
    * TODO Modify this function to call your service
    */
-    def checkAuthentication(name: String, pwd: String): Boolean = return "user@mail.com".equals(name) && "pass".equals(pwd) && (pwd.size > 4)
+    def checkAuthentication(name: String, pwd: String): Boolean = return "user@mail.com".equals(name) && "passa".equals(pwd) && (pwd.size > 4)
 
     var mailAddress = ""
     var password = ""
@@ -43,22 +43,13 @@ object Application extends Controller with Authentication {
       }
     )
 
-
-
-
-
-    //TODO la question 5
-
-
-
-
-
-
-
     if (checkAuthentication(mailAddress, password)) {
        println(mailAddress + ", " + password)
 
-      signingIn(mailAddress)(Ok)
+      signingIn(mailAddress)(Ok("You’ve been signed in"))
+
+      index // Set du nom dans la form index.html
+      Redirect("/") // redirection vers la racine du site web
     } else {
       BadRequest(views.html.login(loginForm.withGlobalError("Invalid user name or password")))
     }
@@ -75,10 +66,10 @@ object Application extends Controller with Authentication {
    * Sign out the user
    */
   val logout = Action { implicit request =>
-    NotImplemented
+    signingOut(Ok("You’ve been signed out"))
   }
 
-  val onUnauthenticated = Forbidden
+  val onUnauthenticated = Redirect("/login")
 
   /**
    * Work with PVWatts (http://developer.nrel.gov/doc/pvwatts)
