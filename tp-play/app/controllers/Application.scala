@@ -46,10 +46,11 @@ object Application extends Controller with Authentication {
     if (checkAuthentication(mailAddress, password)) {
        println(mailAddress + ", " + password)
 
-      signingIn(mailAddress)(Ok("You’ve been signed in"))
-
       index // Set du nom dans la form index.html
-      Redirect("/") // redirection vers la racine du site web
+
+      // Redirect("/") => redirection vers la racine du site web
+      signingIn(mailAddress)(Redirect("/"))
+
     } else {
       BadRequest(views.html.login(loginForm.withGlobalError("Invalid user name or password")))
     }
