@@ -15,14 +15,19 @@ class ApplicationTest extends Specification {
         browser.url must equalTo ("http://localhost:3333/login")
 
         // Fill the signing in form
-        browser fill "[name=name]" `with` "???"
-        browser fill "[name=pwd]" `with` "???"
+        browser fill "[name=name]" `with` "user@mail.com"
+        browser fill "[name=pwd]" `with` "passa"
         browser submit "form"
         // User is logged in and redirected to the index page
         browser.url must equalTo ("http://localhost:3333/")
 
         // Logout
         // TODO
+
+        // Logout
+        browser.$("Sign off").click()
+        browser.url() must equalTo ("http://localhost:3333/logout")
+        browser.pageSource() must contain ("You’ve been signed out")
       }
     }
     "Reject an invalid login submission" in {
@@ -34,8 +39,8 @@ class ApplicationTest extends Specification {
         browser.pageSource must contain ("???")
 
         // Submit a invalid form
-        browser fill "[name=name]" `with` "???"
-        browser fill "[name=pwd]" `with` "???"
+        browser fill "[name=name]" `with` "user@mail.com"
+        browser fill "[name=pwd]" `with` "passa"
         browser submit "form"
         browser.pageSource must contain ("Invalid user name or password")
       }
