@@ -19,7 +19,7 @@ class ApplicationTest extends Specification {
         browser fill "[name=pwd]" `with` "passa"
         browser submit "form"
         // User is logged in and redirected to the index page
-        browser.url must equalTo ("http://localhost:3333/")
+        browser.url must equalTo ("http://localhost:3333/")     //  <== Bug : caused by org.specs2.execute.FailureException: 'http://localhost:3333/login' is not equal to 'http://localhost:3333/'
 
         // Logout
         // TODO
@@ -36,10 +36,10 @@ class ApplicationTest extends Specification {
         // Submit an empty form
         browser submit "form"
         // Validation error
-        browser.pageSource must contain ("???")
+        browser.pageSource must contain ("Invalid user name or password")
 
         // Submit a invalid form
-        browser fill "[name=name]" `with` "user@mail.com"
+        browser fill "[name=name]" `with` "userInvalid@mail.com"
         browser fill "[name=pwd]" `with` "passa"
         browser submit "form"
         browser.pageSource must contain ("Invalid user name or password")
