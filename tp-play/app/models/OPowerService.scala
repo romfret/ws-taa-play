@@ -10,8 +10,8 @@ object OPowerService {
 
   // TODO replace these values with your settings
   // Name and type of the bean
-  val SERVICE_NAME = "???"
-  type SERVICE_TYPE = ???
+  val SERVICE_NAME = "businessImpl"
+  type SERVICE_TYPE = BusinessImpl
 
   // Return a reference to the OPower service
   def apply() = {

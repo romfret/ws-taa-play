@@ -8,6 +8,7 @@ object ApplicationBuild extends Build {
     val appVersion      = "1.0-SNAPSHOT"
 
     val appDependencies = Seq(
+      "fr.istic.m2infopro.taa" % "opowerInterface" % "0.0.1-SNAPSHOT",
       "org.ow2.easybeans.osgi" % "easybeans-component-smartclient" % "1.2.3"
     )
 

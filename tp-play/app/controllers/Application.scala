@@ -16,7 +16,7 @@ object Application extends Controller with Authentication {
    * Show the dashboard of a user
    */
   val index = Authenticated { username => request =>
-    Ok(views.html.index(username))
+    Ok(views.html.index(username, opower))
   }
 
   def loginForm: Form[(String, String)] = Form(tuple("mailAddress" -> text, "pwd" -> text))
