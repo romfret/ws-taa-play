@@ -11,7 +11,7 @@ object OPowerService {
   // TODO replace these values with your settings
   // Name and type of the bean
   val SERVICE_NAME = "businessImpl"
-  type SERVICE_TYPE = BusinessImpl
+  type SERVICE_TYPE = fr.istic.m2infopro.taa.opowerInterface
 
   // Return a reference to the OPower service
   def apply() = {
