@@ -16,8 +16,9 @@ object Application extends Controller with Authentication {
    * Show the dashboard of a user
    */
   val index = Authenticated { username => request =>
-    //Ok(views.html.index(username, opower))
-    Ok(views.html.index(person.getPersons()))
+    var person = opower.getPersonById(1)
+    println("==============================>>" + person)
+    Ok(views.html.index(username, "fhgvjkhl"))
   }
 
   def loginForm: Form[(String, String)] = Form(tuple("mailAddress" -> text, "pwd" -> text))
@@ -45,7 +46,7 @@ object Application extends Controller with Authentication {
     )
 
     if (checkAuthentication(mailAddress, password)) {
-       println(mailAddress + ", " + password)
+      println(mailAddress + ", " + password)
 
       index // Set du nom dans la form index.html
 

@@ -1,7 +1,6 @@
-@(username: String)
+@(username: String, lastName: String)
 
 @layout {
     <h1>Hello @username</h1>
+    <h2>Nom : @lastName</h2>
 }
-
-@(opower.getPersonById(0).toString() : String)
