@@ -16,9 +16,9 @@ object Application extends Controller with Authentication {
    * Show the dashboard of a user
    */
   val index = Authenticated { username => request =>
-    var person = opower.getPersonById(1)
-    println("==============================>>" + person)
-    Ok(views.html.index(username, "fhgvjkhl"))
+    var person = opower.getPersonById(opower.getPersonIdByMailAddress(username))
+
+    Ok(views.html.index(username, person.toString()))
   }
 
   def loginForm: Form[(String, String)] = Form(tuple("mailAddress" -> text, "pwd" -> text))
@@ -31,7 +31,7 @@ object Application extends Controller with Authentication {
    * Check if data from the form submission can authenticate the user
    * TODO Modify this function to call your service
    */
-    def checkAuthentication(name: String, pwd: String): Boolean = return "user@mail.com".equals(name) && "passa".equals(pwd) && (pwd.size > 4)
+    def checkAuthentication(name: String, pwd: String): Boolean = return "florent@mail.com".equals(name) && "passa".equals(pwd) && (pwd.size > 4)
 
     var mailAddress = ""
     var password = ""
